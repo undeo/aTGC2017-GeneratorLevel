@@ -1,0 +1,7 @@
+'interference.cc' creates root files containing a workspace with the parameters describing the interference between different
+    aTGC contributions. Inputfiles are TTrees in a 'Input' folder. The created root-files have to be copied to the Input folder
+    in the directory of the signal estimation code.
+
+run with
+    root -l 'interference.cc("{channel}","{WV}")'
+where {channel} is el or mu and {WV} is WW or WZ.
