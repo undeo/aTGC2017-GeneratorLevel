@@ -27,17 +27,17 @@
 #include <RooPlot.h>
 #include <TSystem.h>
 
-#include <HWWLVJRooPdfs.h>
+#include <PDFs/HWWLVJRooPdfs.h>
 
-double cwwws[]        = {-12.,-6.,-2.,0.,2.,6.,12.};
-double cwwws1[]        = {-12.,-6.,0.,6.,12.};
-double cwwws2[]        = {-2.,0.,2.};
-double ccws[]        = {-20.,-10.,-3.5,0.,3.5,10.,20.};
-double ccws1[]        = {-20.,-10.,0.,10.,20.};
-double ccws2[]        = {-3.5,0.,3.5};
-double cbs[]        = {-60.,-30.,-10.,0.,10.,30.,60.};
-double cbs1[]        = {-60.,-30.,0.,30.,60.};
-double cbs2[]        = {-10.,0.,10.};
+double cwwws[]  = {-12.,-6.,-2.,0.,2.,6.,12.};
+double cwwws1[] = {-12.,-6.,0.,6.,12.};
+double cwwws2[] = {-2.,0.,2.};
+double ccws[]   = {-20.,-10.,-3.5,0.,3.5,10.,20.};
+double ccws1[]  = {-20.,-10.,0.,10.,20.};
+double ccws2[]  = {-3.5,0.,3.5};
+double cbs[]    = {-60.,-30.,-10.,0.,10.,30.,60.};
+double cbs1[]   = {-60.,-30.,0.,30.,60.};
+double cbs2[]   = {-10.,0.,10.};
 double vals[150][3];
 
 double normSM;
