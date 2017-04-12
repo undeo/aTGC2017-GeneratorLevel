@@ -249,15 +249,15 @@ void interference(TString ch,TString sample)
     N_norm_list.add(RooArgList(cwww,ccw,cb));
     N_norm_list.add(RooArgList(N8_tmp,N9_tmp,N10_tmp));
 
-    TString cwww_f         = "+@1*(@6/12)**2";
-    TString ccw_f         = "+@2*(@7/20)**2";
-    TString cb_f        = "+@4*(@8/60)**2";
+    TString cwww_f          = "+@1*(@6/12)**2";
+    TString ccw_f           = "+@2*(@7/20)**2";
+    TString cb_f            = "+@4*(@8/60)**2";
     //TString cwww_lin_f    = "+((@1-@2)/2)*(@7/12)";
-    TString ccw_lin_f     = "+@3*(@7/20)";
-    TString cb_lin_f    = "+@5*(@8/60)";
-    TString cwww_ccw_f    = "+@9*(@6/12)*(@7/20)";
-    TString cwww_cb_f    = "+@10*(@6/12)*(@8/60)";
-    TString ccw_cb_f    = "+@11*(@7/20)*(@8/60)";
+    TString ccw_lin_f       = "+@3*(@7/20)";
+    TString cb_lin_f        = "+@5*(@8/60)";
+    TString cwww_ccw_f      = "+@9*(@6/12)*(@7/20)";
+    TString cwww_cb_f       = "+@10*(@6/12)*(@8/60)";
+    TString ccw_cb_f        = "+@11*(@7/20)*(@8/60)";
     RooFormulaVar Norm("Norm","@0"+cwww_f+ccw_f+ccw_lin_f+cb_f+cb_lin_f+cwww_ccw_f+cwww_cb_f+ccw_cb_f,N_norm_list);
 
     RooFormulaVar N1("N1","@1/@0",RooArgList(Norm,N_SM));
@@ -284,16 +284,16 @@ void interference(TString ch,TString sample)
     RooAddPdf model1("model","model",Pdf_list,N_list);
 
 
-    RooRealVar * a1     = w.var("a1");
-    RooRealVar * a2        = w.var("a2"); a2->setConstant(true);
+    RooRealVar * a1         = w.var("a1");
+    RooRealVar * a2         = w.var("a2"); a2->setConstant(true);
     //RooRealVar * a22    = w.var("a22"); a22->setConstant(true);
-    RooRealVar * a3        = w.var("a3"); a3->setConstant(true);
-    RooRealVar * a33    = w.var("a33");    a33->setConstant(true);
-    RooRealVar * a4        = w.var("a4");     a4->setConstant(true);
-    RooRealVar * a44    = w.var("a44");    a44->setConstant(true);
-    RooRealVar * a5        = w.var("a5");    a5->setConstant(true);
-    RooRealVar * a6        = w.var("a6");    a6->setConstant(true);
-    RooRealVar * a7        = w.var("a7");    a7->setConstant(true);
+    RooRealVar * a3         = w.var("a3"); a3->setConstant(true);
+    RooRealVar * a33        = w.var("a33");    a33->setConstant(true);
+    RooRealVar * a4         = w.var("a4");     a4->setConstant(true);
+    RooRealVar * a44        = w.var("a44");    a44->setConstant(true);
+    RooRealVar * a5         = w.var("a5");    a5->setConstant(true);
+    RooRealVar * a6         = w.var("a6");    a6->setConstant(true);
+    RooRealVar * a7         = w.var("a7");    a7->setConstant(true);
 
 
 //SM-fit
@@ -352,7 +352,7 @@ void interference(TString ch,TString sample)
 
     w2.import(model1);
 
-    TFile * fileOut = new TFile("genlevel_"+sample+"_"+ch+".root","RECREATE");
+    TFile * fileOut = new TFile("Output/genlevel_"+sample+"_"+ch+".root","RECREATE");
     w2.Write();
     fileOut->Close();
 
@@ -382,8 +382,6 @@ void interference(TString ch,TString sample)
     hist4scale_cb.SetBinContent(2,w.data("cwww0ccw0cb0")->sumEntries()/sum_SM);
     hist4scale_cb.SetBinContent(3,w.data("cwww0ccw0cb60")->sumEntries()/sum_SM);
     hist4scale_cb.Fit("pol2");
-
-
     TF1 * fitfunc_cb    = hist4scale_cb.GetFunction("pol2");
     RooRealVar par0_cb("par0_cb","par0_cb",fitfunc_cb->GetParameter(0));
     RooRealVar par1_cb("par1_cb","par1_cb",fitfunc_cb->GetParameter(1));
@@ -431,8 +429,6 @@ void interference(TString ch,TString sample)
     pp->Draw();
     tt1.Draw();
     cc1.Draw();cc1.Update();
-    cc1.SaveAs("../read_lhe_WZ/ARC_plots/ccw_SMint_pos_WW_"+ch+".png");
-    cc1.SaveAs("../read_lhe_WZ/ARC_plots/ccw_SMint_pos_WW_"+ch+".pdf");
 
     TCanvas ccc2("smintccwneg","smintccwneg",1);
     ccc2.cd();ccc2.SetLogy();ccc2.SetRightMargin(0.25);ccc2.SetTickx();ccc2.SetTicky();
@@ -475,8 +471,6 @@ void interference(TString ch,TString sample)
     pp2->Draw();
     tt2.Draw();
     ccc2.Draw();ccc2.Update();
-    ccc2.SaveAs("../read_lhe_WZ/ARC_plots/ccw_SMint_neg_WW_"+ch+".png");
-    ccc2.SaveAs("../read_lhe_WZ/ARC_plots/ccw_SMint_neg_WW_"+ch+".pdf");
 
 
     TCanvas ccc3("smintcbneg","smintcbneg",1);
@@ -520,8 +514,6 @@ void interference(TString ch,TString sample)
     pp3->Draw();
     tt3.Draw();
     ccc3.Draw();ccc3.Update();
-    ccc3.SaveAs("../read_lhe_WZ/ARC_plots/cb_SMint_neg_WW_"+ch+".png");
-    ccc3.SaveAs("../read_lhe_WZ/ARC_plots/cb_SMint_neg_WW_"+ch+".pdf");
     
 
     TCanvas ccc4("smintcbpos","smintcbpos",1);
@@ -565,8 +557,6 @@ void interference(TString ch,TString sample)
     pp4->Draw();
     tt4.Draw();
     ccc4.Draw();ccc4.Update();
-    ccc4.SaveAs("../read_lhe_WZ/ARC_plots/cb_SMint_pos_WW_"+ch+".png");
-    ccc4.SaveAs("../read_lhe_WZ/ARC_plots/cb_SMint_pos_WW_"+ch+".pdf");
 */
 
     for(int i = 1; i<8; i++)
