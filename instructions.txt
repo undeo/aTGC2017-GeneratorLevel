@@ -1,7 +1,15 @@
 'interference.cc' creates root files containing a workspace with the parameters describing the interference between different
-    aTGC contributions. Inputfiles are TTrees in a 'Input' folder. The created root-files have to be copied to the Input folder
-    in the directory of the signal estimation code.
+    aTGC contributions. These workspaces are needed by the signal estimation code. Inputfiles are TTrees in a 'Input' folder.
+    The created root-files have to be copied to the Input folder in the directory of the signal estimation code.
+
+use CMSSW_7_4_6
+clone the repository with
+    git clone https://github.com/undeo/aTGC2017-GeneratorLevel.git
 
 run with
     root -l 'interference.cc("{channel}","{WV}")'
 where {channel} is el or mu and {WV} is WW or WZ.
+
+
+
+'read_lhe_WW.cc' and 'read_lhe_WZ.cc' process the generated lhe files and creates the TTrees used for interference.cc.
