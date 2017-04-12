@@ -13,6 +13,8 @@
 #include <TPad.h>
 #include <iostream>
 #include <sstream>
+#include <sys/types.h>
+#include <dirent.h>
 #include <algorithm>
 #include <RooWorkspace.h>
 #include <RooRealVar.h>
@@ -351,6 +353,10 @@ void interference(TString ch,TString sample)
 
 
     w2.import(model1);
+
+    if(!opendir("Output/")){
+        system("mkdir Output/");
+    }
 
     TFile * fileOut = new TFile("Output/genlevel_"+sample+"_"+ch+".root","RECREATE");
     w2.Write();
