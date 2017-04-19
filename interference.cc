@@ -198,9 +198,6 @@ void interference(TString ch,TString sample)
     hist_cwwwcb->Fit(fit_string);
     hist_cwwwcb->Draw("E1");
     can_cwwwcb.Draw();can_cwwwcb.Update();
-    std::cout<<"<ENTER>"<<std::endl;
-    int pause;
-    pause=getchar();
 
 
     //make complete signal model for plots
@@ -236,7 +233,6 @@ void interference(TString ch,TString sample)
     RooRealVar N_12_60("N_cwww_cb_12_60","N_cwww_cb_12_60",w.data("cwww12ccw0cb60")->sumEntries());
     RooRealVar N_20_60("N_ccw_cb_20_60","N_ccw_cb_20_60",w.data("cwww0ccw20cb60")->sumEntries());
     RooRealVar N_4norm("N_4norm","N_4norm",w.data("cwww_12ccw_20cb_60")->sumEntries());
-
 
     RooRealVar N2_tmp("N2_tmp","N2_tmp",(N_12.getVal()+N__12.getVal())/2-N_SM.getVal());
     RooRealVar N4_tmp("N4_tmp","N4_tmp",(N_20.getVal()+N__20.getVal())/2-N_SM.getVal());
@@ -353,6 +349,16 @@ void interference(TString ch,TString sample)
 
 
     w2.import(model1);
+    w2.import(N__12);
+    w2.import(N_12);
+    w2.import(N__20);
+    w2.import(N_20);
+    w2.import(N__60);
+    w2.import(N_60);
+    w2.import(N_12_20);
+    w2.import(N_12_60);
+    w2.import(N_20_60);
+    w2.import(N_4norm);
 
     if(!opendir("Output/")){
         system("mkdir Output/");
